@@ -1,4 +1,4 @@
-import { SignUpView } from "@/features/auth/views/signup-view";
+import { SignUpView } from "@/features/auth/components/signup-view";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

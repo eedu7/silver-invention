@@ -1,3 +1,5 @@
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { ScanSidebar } from "@/features/scans/components/scan-sidebar";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
@@ -10,13 +12,13 @@ export default async function Layout({
         headers: await headers(),
     });
 
-    if (session) {
-        redirect("/new");
+    if (!session) {
+        redirect("/login");
     }
-
     return (
-        <div className="mx-auto flex h-screen max-w-7xl items-center justify-center">
-            {children}
-        </div>
+        <SidebarProvider>
+            <ScanSidebar />
+            <SidebarInset>{children}</SidebarInset>
+        </SidebarProvider>
     );
 }
